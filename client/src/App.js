@@ -16,19 +16,38 @@ import Line from "./scenes/line";
 import Pie from "./scenes/pie";
 import FAQ from "./scenes/faq";
 import Geography from "./scenes/geography";
- 
+import React, { useState, useRef, useEffect } from "react";
+import Login from "./scenes/login";
+import Register from "./scenes/register";
 
 
 
 function App() {
   const[theme,colorMode] = useMode();
+  const [isLoggedIn, setLogin] = useState();
+  const [change, setChange] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("info") !== null) {
+      setLogin(true);
+    } else {
+      setLogin(false);
+    }
+  }, [change]);
+
+  console.log(isLoggedIn);
+
+
 
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div className="app">
-          <SideBar />
+
+          {isLoggedIn ? (<>
+          
+            <SideBar />
           <main className="content">
             <Topbar />
             <Routes>
@@ -45,7 +64,28 @@ function App() {
               <Route path="/faq" element={<FAQ/>}/>
               <Route path="/geography" element={<Geography/>}/>
             </Routes>
+          </main>          </>
+
+
+          ) : (
+            <>
+
+          <main className="content">
+          <Topbar />
+
+            <Routes>
+              <Route path="/login" element={<Login/>}/>
+              <Route path="/register" element={<Register/>}/>
+
+
+            </Routes>
           </main>
+                    </>
+
+          )
+        
+        }
+          
         </div>
       </ThemeProvider>
     </ColorModeContext.Provider>
