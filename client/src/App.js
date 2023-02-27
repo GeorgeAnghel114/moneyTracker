@@ -37,8 +37,6 @@ function App() {
 
   console.log(isLoggedIn);
 
-
-
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
@@ -65,11 +63,8 @@ function App() {
               <Route path="/geography" element={<Geography/>}/>
             </Routes>
           </main>          </>
-
-
           ) : (
             <>
-
           <main className="content">
           <Topbar />
 
