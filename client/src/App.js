@@ -8,7 +8,7 @@ import DashBoard from "./scenes/dashboard";
 import Team from "./scenes/team";
 import Invoices from "./scenes/invocies";
 import Contacts from "./scenes/contacts";
-// import Bar from "./scenes/bar";
+import Bar from "./scenes/bar";
 import Form from "./scenes/form";
 import { Theme } from "@fullcalendar/core/internal";
 import Calendar from "./scenes/calendar";
@@ -39,7 +39,7 @@ function App() {
               <Route path="/form" element={<Form/>}/>
               <Route path="/calendar" element={<Calendar/>}/>  
 
-              {/* <Route path="/bar" element={<Bar/>}/> */}
+              <Route path="/bar" element={<Bar/>}/>
               {/* <Route path="/pie" element={<Pie/>}/> */}
               {/* <Route path="/line" element={<Line/>}/> */}
               <Route path="/faq" element={<FAQ/>}/>
