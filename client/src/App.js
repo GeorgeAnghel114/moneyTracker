@@ -14,7 +14,7 @@ import { Theme } from "@fullcalendar/core/internal";
 import Calendar from "./scenes/calendar";
 // import Line from "./scenes/line";
 // import Pie from "./scenes/pie";
-// import FAQ from "./scenes/faq";
+import FAQ from "./scenes/faq";
 // import Geography from "./scenes/geography";
  
 
@@ -42,7 +42,7 @@ function App() {
               {/* <Route path="/bar" element={<Bar/>}/> */}
               {/* <Route path="/pie" element={<Pie/>}/> */}
               {/* <Route path="/line" element={<Line/>}/> */}
-              {/* <Route path="/faq" element={<FAQ/>}/> */}
+              <Route path="/faq" element={<FAQ/>}/>
               {/* <Route path="/geography" element={<Geography/>}/> */}
             </Routes>
           </main>
