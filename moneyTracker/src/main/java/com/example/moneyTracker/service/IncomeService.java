@@ -6,6 +6,8 @@ import com.example.moneyTracker.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class IncomeService {
     private final IncomeRepository incomeRepository;
@@ -18,6 +20,11 @@ public class IncomeService {
 
     public void addInvoice(Income income) {
         incomeRepository.save(income);
+    }
+
+    public List<Income> getIncomesOfUser(String email){
+        return incomeRepository.findIncomesByUserEmail(email);
+
     }
 
 
