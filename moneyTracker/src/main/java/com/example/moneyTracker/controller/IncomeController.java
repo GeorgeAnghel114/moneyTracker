@@ -1,5 +1,6 @@
 package com.example.moneyTracker.controller;
 
+import com.example.moneyTracker.DTOs.IncomeDto;
 import com.example.moneyTracker.DTOs.UserDTO;
 import com.example.moneyTracker.entities.Income;
 import com.example.moneyTracker.service.IncomeService;
@@ -20,8 +21,12 @@ public class IncomeController {
     }
     @GetMapping("/get-incomes/{email}")
     public List<Income> getUserIncomes(@PathVariable String email){
-        System.out.println(incomeService.getIncomesOfUser(email));
         return incomeService.getIncomesOfUser(email);
+    }
+
+    @PostMapping("/add-income/{email}")
+    public void addUserIncome(@PathVariable String email, @RequestBody IncomeDto incomeDto){
+        incomeService.addIncomeOfUser(incomeDto,email);
     }
 
 }

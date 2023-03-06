@@ -8,9 +8,9 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class UserDTO {
+public class IncomeDto {
+    private Double amount;
+    private String currency;
     private String email;
-    private String userName;
-    private User user;
 
 }
