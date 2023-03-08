@@ -1,6 +1,6 @@
 package com.example.moneyTracker.service;
 
-import com.example.moneyTracker.DTOs.IncomeDto;
+import com.example.moneyTracker.DTOs.IncomeDTO;
 import com.example.moneyTracker.entities.Income;
 import com.example.moneyTracker.entities.User;
 import com.example.moneyTracker.repositories.IncomeRepository;
@@ -28,12 +28,11 @@ public class IncomeService {
         return incomeRepository.findIncomesByUserEmail(email);
     }
 
-    public Income addIncomeOfUser(IncomeDto incomeDto,String email){
+    public Income addIncomeOfUser(IncomeDTO incomeDto, String email) throws ClassNotFoundException {
         Income income = new Income();
         User user = userRepository.findUserByEmail(email);
         income.setAmount(incomeDto.getAmount());
         income.setCurrency(incomeDto.getCurrency());
-        income.setIncomeCategory(incomeDto.getIncomeCategory());
         income.setUser(user);
         List<Income> incomeList = user.getIncome();
         incomeList.add(income);

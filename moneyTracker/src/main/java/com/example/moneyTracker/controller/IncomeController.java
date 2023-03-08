@@ -1,7 +1,6 @@
 package com.example.moneyTracker.controller;
 
-import com.example.moneyTracker.DTOs.IncomeDto;
-import com.example.moneyTracker.DTOs.UserDTO;
+import com.example.moneyTracker.DTOs.IncomeDTO;
 import com.example.moneyTracker.entities.Income;
 import com.example.moneyTracker.service.IncomeService;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +24,7 @@ public class IncomeController {
     }
 
     @PostMapping("/add-income/{email}")
-    public void addUserIncome(@PathVariable String email, @RequestBody IncomeDto incomeDto){
+    public void addUserIncome(@PathVariable String email, @RequestBody IncomeDTO incomeDto) throws ClassNotFoundException {
         incomeService.addIncomeOfUser(incomeDto,email);
     }
 
