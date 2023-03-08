@@ -20,6 +20,8 @@ public class Income {
     private Long id;
     private Double amount;
     private String currency;
+    @Enumerated(EnumType.STRING)
+    private IncomeCategory incomeCategory;
     @ManyToOne
     @JsonBackReference
     private User user;

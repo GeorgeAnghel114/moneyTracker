@@ -33,6 +33,7 @@ public class IncomeService {
         User user = userRepository.findUserByEmail(email);
         income.setAmount(incomeDto.getAmount());
         income.setCurrency(incomeDto.getCurrency());
+        income.setIncomeCategory(incomeDto.getIncomeCategory());
         income.setUser(user);
         List<Income> incomeList = user.getIncome();
         incomeList.add(income);
