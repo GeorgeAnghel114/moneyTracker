@@ -26,17 +26,17 @@ public class ExpenseService {
         expenseRepository.save(expense);
     }
 
-    public List<Expense> getIncomesOfUser(String email){
+    public List<Expense> getExpensesOfUser(String email){
         return expenseRepository.findExpenseByUserEmail(email);
     }
 
-    public void addIncomeOfUser(ExpenseDTO expenseDTO, String email)  {
+    public void addExpenseOfUser(ExpenseDTO expenseDTO, String email)  {
         Income income = new Income();
         Expense expense = new Expense();
         User user = userRepository.findUserByEmail(email);
         expense.setAmount(expenseDTO.getAmount());
         expense.setCurrency(expenseDTO.getCurrency());
-        expense.setIncomeCategory(expenseDTO.getIncomeCategory());
+        expense.setIncomeCategory(expenseDTO.getExpenseCategory());
         expense.setUser(user);
         List<Expense> expenseList = user.getExpenses();
         expenseList.add(expense);

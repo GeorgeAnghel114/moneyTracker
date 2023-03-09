@@ -11,5 +11,5 @@ public class ExpenseDTO {
     private Double amount;
     private String currency;
     private String email;
-    private String incomeCategory;
+    private String expenseCategory;
 }
