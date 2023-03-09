@@ -15,8 +15,8 @@ public class IncomeService {
     private final IncomeRepository incomeRepository;
     private final UserRepository userRepository;
     @Autowired
-    public IncomeService(IncomeRepository incomeRepository1, UserRepository userRepository) {
-        this.incomeRepository = incomeRepository1;
+    public IncomeService(IncomeRepository incomeRepository, UserRepository userRepository) {
+        this.incomeRepository = incomeRepository;
         this.userRepository = userRepository;
     }
 
@@ -35,7 +35,7 @@ public class IncomeService {
         income.setCurrency(incomeDto.getCurrency());
         income.setIncomeCategory(incomeDto.getIncomeCategory());
         income.setUser(user);
-        List<Income> incomeList = user.getIncome();
+        List<Income> incomeList = user.getIncomes();
         incomeList.add(income);
         addIncome(income);
     }

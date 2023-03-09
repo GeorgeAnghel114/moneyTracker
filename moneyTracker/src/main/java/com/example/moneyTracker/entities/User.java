@@ -2,12 +2,9 @@ package com.example.moneyTracker.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -28,6 +25,9 @@ public class User {
     private String password;
     @OneToMany
     @JsonManagedReference
-    private List<Income> income;
+    private List<Income> incomes;
+    @OneToMany
+    @JsonManagedReference
+    private List<Expense> expenses;
 
 }
