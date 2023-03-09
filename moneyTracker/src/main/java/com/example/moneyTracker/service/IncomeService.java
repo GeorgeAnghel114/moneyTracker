@@ -28,16 +28,16 @@ public class IncomeService {
         return incomeRepository.findIncomesByUserEmail(email);
     }
 
-    public Income addIncomeOfUser(IncomeDTO incomeDto, String email) throws ClassNotFoundException {
+    public void addIncomeOfUser(IncomeDTO incomeDto, String email)  {
         Income income = new Income();
         User user = userRepository.findUserByEmail(email);
         income.setAmount(incomeDto.getAmount());
         income.setCurrency(incomeDto.getCurrency());
+        income.setIncomeCategory(incomeDto.getIncomeCategory());
         income.setUser(user);
         List<Income> incomeList = user.getIncome();
         incomeList.add(income);
         addIncome(income);
-        return income;
     }
 
 

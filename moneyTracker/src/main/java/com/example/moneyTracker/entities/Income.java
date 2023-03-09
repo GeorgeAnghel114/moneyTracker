@@ -20,9 +20,8 @@ public class Income {
     private Long id;
     private Double amount;
     private String currency;
-    @JsonBackReference
-    @ManyToOne
-    private IncomeCategory incomeCategory;
+
+    private String incomeCategory;
     @ManyToOne
     @JsonBackReference
     private User user;
