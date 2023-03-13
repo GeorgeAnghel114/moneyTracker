@@ -45,8 +45,8 @@ public class ExpenseService {
         addExpense(expense);
     }
 
-    public Double getTotalCostExpenses(){
-        List<Expense>expenses =  expenseRepository.findAll();
+    public Double getTotalCostExpenses(String email){
+        List<Expense> expenses =  getExpensesOfUser(email);
         Double sum = (double) 0;
         for (Expense expens : expenses) {
             sum += expens.getAmount();

@@ -25,8 +25,12 @@ public class IncomeController {
 
     @PostMapping("/add-income/{email}")
     public void addUserIncome(@PathVariable String email, @RequestBody IncomeDTO incomeDto) {
-        System.out.println(incomeDto.getIncomeCategory());
         incomeService.addIncomeOfUser(incomeDto,email);
+    }
+
+    @GetMapping("/get-total-incomes/{email}")
+    public Double getTotalIncomes(@PathVariable String email){
+        return incomeService.getTotalIncomes();
     }
 
 }

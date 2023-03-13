@@ -63,7 +63,7 @@ const Dashboard = () => {
         >
           <StatBox
             title="12,361"
-            subtitle="Emails Sent"
+            subtitle="Total Incomes"
             progress="0.75"
             increase="+14%"
             icon={
@@ -81,7 +81,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={"$"+totalCostExpenses}
+            title={"$"+totalCostExpenses.toLocaleString()}
             subtitle="Total Expenses"
             progress="0.50"
             increase="+21%"

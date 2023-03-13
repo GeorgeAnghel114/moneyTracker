@@ -29,6 +29,6 @@ public class ExpenseController {
 
     @GetMapping("/get-total-cost-expenses/{email}")
     public Double getTotalCostOfExpenses(@PathVariable String email){
-        return expenseService.getTotalCostExpenses();
+        return expenseService.getTotalCostExpenses(email);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.moneyTracker.service;
 
 import com.example.moneyTracker.DTOs.IncomeDTO;
+import com.example.moneyTracker.entities.Expense;
 import com.example.moneyTracker.entities.Income;
 import com.example.moneyTracker.entities.User;
 import com.example.moneyTracker.repositories.IncomeRepository;
@@ -38,6 +39,15 @@ public class IncomeService {
         List<Income> incomeList = user.getIncomes();
         incomeList.add(income);
         addIncome(income);
+    }
+
+    public Double getTotalIncomes(){
+        List<Income> incomeList = incomeRepository.findAll();
+        Double sum = (double) 0;
+        for (Income income : incomeList) {
+            sum+=income.getAmount();
+        }
+        return sum;
     }
 
 
