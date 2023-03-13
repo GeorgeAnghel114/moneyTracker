@@ -41,8 +41,8 @@ public class IncomeService {
         addIncome(income);
     }
 
-    public Double getTotalIncomes(){
-        List<Income> incomeList = incomeRepository.findAll();
+    public Double getTotalIncomes(String email){
+        List<Income> incomeList = getIncomesOfUser(email);
         Double sum = (double) 0;
         for (Income income : incomeList) {
             sum+=income.getAmount();

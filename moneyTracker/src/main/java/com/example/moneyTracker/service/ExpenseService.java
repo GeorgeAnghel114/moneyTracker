@@ -9,7 +9,6 @@ import com.example.moneyTracker.repositories.ExpenseRepository;
 import com.example.moneyTracker.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Date;
 import java.util.List;
 
@@ -46,7 +45,8 @@ public class ExpenseService {
     }
 
     public Double getTotalCostExpenses(String email){
-        List<Expense> expenses =  getExpensesOfUser(email);
+        User user = userRepository.findUserByEmail(email);
+        List<Expense> expenses =  user.getExpenses();
         Double sum = (double) 0;
         for (Expense expens : expenses) {
             sum += expens.getAmount();

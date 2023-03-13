@@ -30,7 +30,7 @@ public class IncomeController {
 
     @GetMapping("/get-total-incomes/{email}")
     public Double getTotalIncomes(@PathVariable String email){
-        return incomeService.getTotalIncomes();
+        return incomeService.getTotalIncomes(email);
     }
 
 }
