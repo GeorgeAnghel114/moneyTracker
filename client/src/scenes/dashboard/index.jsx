@@ -15,6 +15,7 @@ import ProgressCircle from "../../components/ProgressCircle";
 import { useEffect,useState } from "react";
 import AllExpenses from "../../fetch/fetchAllExpenses";
 import TotalExpensesCost from "../../fetch/fetchTotalExpensesCost";
+import TotalIncomesCost from "../../fetch/fetchTotalIncomesCost";
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -22,7 +23,7 @@ const Dashboard = () => {
   const email = "messi";
   const expenses = AllExpenses(`http://localhost:8080/api/expense/get-expenses/${email}`);
   let totalCostExpenses = TotalExpensesCost(`http://localhost:8080/api/expense/get-total-cost-expenses/${email}`)
-  console.log(totalCostExpenses)
+  let totalCostIncomes = TotalIncomesCost(`http://localhost:8080/api/income/get-total-incomes/messi/${email}`)
   
   return (
     <Box m="20px">
@@ -62,7 +63,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="12,361"
+            title={"$"+totalCostIncomes.toLocaleString()}
             subtitle="Total Incomes"
             progress="0.75"
             increase="+14%"
