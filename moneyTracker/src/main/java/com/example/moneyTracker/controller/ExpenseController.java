@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000/", methods = {RequestMethod.PUT, RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST})
 @RequestMapping("/api/expense")
 @RestController
 public class ExpenseController {
@@ -25,5 +26,12 @@ public class ExpenseController {
     @GetMapping("/get-expenses/{email}")
     public List<Expense> getUserExpenses(@PathVariable String email){
         return expenseService.getExpensesOfUser(email);
+    }
+
+    @GetMapping("/get-total-cost-expenses/{email}")
+    public Double getTotalCostOfExpenses(@PathVariable String email){
+        return expenseService.getTotalCostExpenses();
+
+
     }
 }

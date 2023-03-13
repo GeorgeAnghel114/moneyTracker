@@ -10,6 +10,7 @@ import com.example.moneyTracker.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -38,11 +39,20 @@ public class ExpenseService {
         expense.setCurrency(expenseDTO.getCurrency());
         expense.setIncomeCategory(expenseDTO.getExpenseCategory());
         expense.setUser(user);
+        expense.setDate(new Date());
         List<Expense> expenseList = user.getExpenses();
         expenseList.add(expense);
         addExpense(expense);
     }
 
+    public Double getTotalCostExpenses(){
+        List<Expense>expenses =  expenseRepository.findAll();
+        Double sum = (double) 0;
+        for (Expense expens : expenses) {
+            sum += expens.getAmount();
+        }
+        return sum;
+    }
 
 
 }
