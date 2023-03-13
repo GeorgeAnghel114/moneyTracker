@@ -12,11 +12,18 @@ import GeographyChart from "../../components/GeographyChart";
 import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
+import { useEffect,useState } from "react";
+import AllExpenses from "../../fetch/fetchAllExpenses";
+import TotalExpensesCost from "../../fetch/fetchTotalExpensesCost";
 
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
+  const email = "messi";
+  const expenses = AllExpenses(`http://localhost:8080/api/expense/get-expenses/${email}`);
+  let totalCostExpenses = TotalExpensesCost(`http://localhost:8080/api/expense/get-total-cost-expenses/${email}`)
+  console.log(totalCostExpenses)
+  
   return (
     <Box m="20px">
       {/* HEADER */}
@@ -74,8 +81,8 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="431,225"
-            subtitle="Sales Obtained"
+            title={"$"+totalCostExpenses}
+            subtitle="Total Expenses"
             progress="0.50"
             increase="+21%"
             icon={
@@ -183,9 +190,9 @@ const Dashboard = () => {
               Recent Transactions
             </Typography>
           </Box>
-          {mockTransactions.map((transaction, i) => (
+          {expenses.map((expense, i) => (
             <Box
-              key={`${transaction.txId}-${i}`}
+              key={`${expense.txId}-${i}`}
               display="flex"
               justifyContent="space-between"
               alignItems="center"
@@ -198,19 +205,19 @@ const Dashboard = () => {
                   variant="h5"
                   fontWeight="600"
                 >
-                  {transaction.txId}
+                  {expense.txId}
                 </Typography>
                 <Typography color={colors.grey[100]}>
-                  {transaction.user}
+                  {expense.date.slice(0,10)}
                 </Typography>
               </Box>
-              <Box color={colors.grey[100]}>{transaction.date}</Box>
+              <Box color={colors.grey[100]}>{expense.incomeCategory}</Box>
               <Box
                 backgroundColor={colors.greenAccent[500]}
                 p="5px 10px"
                 borderRadius="4px"
               >
-                ${transaction.cost}
+                ${expense.amount}
               </Box>
             </Box>
           ))}

@@ -27,23 +27,23 @@ function App() {
   const [isLoggedIn, setLogin] = useState();
   const [change, setChange] = useState(false);
 
-  useEffect(() => {
-    if (localStorage.getItem("info") !== null) {
-      setLogin(true);
-    } else {
-      setLogin(false);
-    }
-  }, [change]);
+  // useEffect(() => {
+  //   if (localStorage.getItem("info") !== null) {
+  //     setLogin(true);
+  //   } else {
+  //     setLogin(false);
+  //   }
+  // }, [change]);
 
-  console.log(isLoggedIn);
+  // console.log(isLoggedIn);
 
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div className="app">
-
-          {isLoggedIn ? (<>
+ 
+          {!isLoggedIn ? (<>
           
             <SideBar />
           <main className="content">

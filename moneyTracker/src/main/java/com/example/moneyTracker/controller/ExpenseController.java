@@ -4,7 +4,6 @@ import com.example.moneyTracker.DTOs.ExpenseDTO;
 import com.example.moneyTracker.entities.Expense;
 import com.example.moneyTracker.service.ExpenseService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000/", methods = {RequestMethod.PUT, RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST})
@@ -31,7 +30,5 @@ public class ExpenseController {
     @GetMapping("/get-total-cost-expenses/{email}")
     public Double getTotalCostOfExpenses(@PathVariable String email){
         return expenseService.getTotalCostExpenses();
-
-
     }
 }
