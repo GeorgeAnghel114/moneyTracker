@@ -22,15 +22,18 @@ public class IncomeController {
     public List<Income> getUserIncomes(@PathVariable String email){
         return incomeService.getIncomesOfUser(email);
     }
-
     @PostMapping("/add-income/{email}")
     public void addUserIncome(@PathVariable String email, @RequestBody IncomeDTO incomeDto) {
         incomeService.addIncomeOfUser(incomeDto,email);
     }
-
     @GetMapping("/get-total-incomes/{email}")
     public Double getTotalIncomes(@PathVariable String email){
         return incomeService.getTotalIncomes(email);
+    }
+
+    @GetMapping("/get-biggest-income/{email}")
+    public Double getBiggestIncomeThisMonth(@PathVariable String email){
+        return incomeService.getBiggestIncomeThisMonth(email);
     }
 
 }

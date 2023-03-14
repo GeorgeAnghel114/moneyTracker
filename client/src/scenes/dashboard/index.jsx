@@ -16,21 +16,22 @@ import { useEffect,useState } from "react";
 import AllExpenses from "../../fetch/fetchAllExpenses";
 import TotalExpensesCost from "../../fetch/fetchTotalExpensesCost";
 import TotalIncomesCost from "../../fetch/fetchTotalIncomesCost";
+import BiggestIncomeThisMonth from "../../fetch/fetchBiggestIncomeThisMonth";
 
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const email = "messi";
   const expenses = AllExpenses(`http://localhost:8080/api/expense/get-expenses/${email}`);
-  let totalCostExpenses = TotalExpensesCost(`http://localhost:8080/api/expense/get-total-cost-expenses/${email}`)
-  let totalCostIncomes = TotalIncomesCost(`http://localhost:8080/api/income/get-total-incomes/messi/${email}`)
+  const totalCostExpenses = TotalExpensesCost(`http://localhost:8080/api/expense/get-total-cost-expenses/${email}`)
+  const totalCostIncomes = TotalIncomesCost(`http://localhost:8080/api/income/get-total-incomes/${email}`)
+  const biggestIncomeThisMonth = BiggestIncomeThisMonth(`http://localhost:8080/api/income/get-biggest-income/${email}`)
   
   return (
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
-
         <Box>
           <Button
             sx={{
@@ -46,7 +47,6 @@ const Dashboard = () => {
           </Button>
         </Box>
       </Box>
-
       {/* GRID & CHARTS */}
       <Box
         display="grid"
@@ -101,8 +101,8 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="32,441"
-            subtitle="New Clients"
+            title={"$"+biggestIncomeThisMonth.toLocaleString()}
+            subtitle="Biggest Income This Month"
             progress="0.30"
             increase="+5%"
             icon={
