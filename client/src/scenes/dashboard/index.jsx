@@ -121,7 +121,7 @@ const Dashboard = () => {
         >
           <StatBox
             title="1,325,134"
-            subtitle="Traffic Received"
+            subtitle="Biggest Expense This Month"
             progress="0.80"
             increase="+43%"
             icon={
@@ -212,7 +212,9 @@ const Dashboard = () => {
                   {expense.date.slice(0,10)}
                 </Typography>
               </Box>
-              <Box color={colors.grey[100]}>{expense.incomeCategory}</Box>
+              <Box
+              p-left="0px"
+              color={colors.grey[100]}>{expense.incomeCategory}</Box>
               <Box
                 backgroundColor={colors.greenAccent[500]}
                 p="5px 10px"
