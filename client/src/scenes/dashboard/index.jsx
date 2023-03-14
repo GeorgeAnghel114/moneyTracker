@@ -17,6 +17,7 @@ import AllExpenses from "../../fetch/fetchAllExpenses";
 import TotalExpensesCost from "../../fetch/fetchTotalExpensesCost";
 import TotalIncomesCost from "../../fetch/fetchTotalIncomesCost";
 import BiggestIncomeThisMonth from "../../fetch/fetchBiggestIncomeThisMonth";
+import BiggestExpenseThisMonth from "../../fetch/fetchBiggestExpenseThisMonth";
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -26,6 +27,8 @@ const Dashboard = () => {
   const totalCostExpenses = TotalExpensesCost(`http://localhost:8080/api/expense/get-total-cost-expenses/${email}`)
   const totalCostIncomes = TotalIncomesCost(`http://localhost:8080/api/income/get-total-incomes/${email}`)
   const biggestIncomeThisMonth = BiggestIncomeThisMonth(`http://localhost:8080/api/income/get-biggest-income/${email}`)
+  const biggestExpenseThisMonth = BiggestExpenseThisMonth(`http://localhost:8080/api/expense/get-biggest-expenses/${email}`)
+  console.log(biggestExpenseThisMonth);
   
   return (
     <Box m="20px">
@@ -120,10 +123,10 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="1,325,134"
+            title={biggestExpenseThisMonth.amount}
             subtitle="Biggest Expense This Month"
             progress="0.80"
-            increase="+43%"
+            increase={biggestExpenseThisMonth.category}
             icon={
               <TrafficIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}

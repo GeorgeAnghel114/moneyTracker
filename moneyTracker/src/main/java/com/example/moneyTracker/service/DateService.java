@@ -10,17 +10,13 @@ public class DateService {
 
     public int getMonthAsInt(Date date){
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        int month = localDate.getMonthValue();
-        System.out.println(month);
-        return month;
+        return localDate.getMonthValue();
     }
 
     public int getCurrentMonthAsInt(){
         Date date = new Date();
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        int currentMonthAsInt = localDate.getMonthValue();
-        System.out.println(currentMonthAsInt);
-        return currentMonthAsInt;
+        return localDate.getMonthValue();
     }
 
 }

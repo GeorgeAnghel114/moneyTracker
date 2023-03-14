@@ -10,9 +10,8 @@ export default function BiggestIncomeThisMonth(URL){
         const response = await request.json();
         setBiggestIncome(response)
       }
-      console.log("total expensesss" +biggestIncome)
       fetchBiggestIncomeThisMonth();
-    },)
+    },[])
 
     return biggestIncome;
   }

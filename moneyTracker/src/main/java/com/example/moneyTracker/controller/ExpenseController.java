@@ -1,5 +1,6 @@
 package com.example.moneyTracker.controller;
 
+import com.example.moneyTracker.DTOs.BiggestExpenseDTO;
 import com.example.moneyTracker.DTOs.ExpenseDTO;
 import com.example.moneyTracker.entities.Expense;
 import com.example.moneyTracker.service.ExpenseService;
@@ -34,8 +35,8 @@ public class ExpenseController {
         return expenseService.getTotalCostExpenses(email);
     }
 
-    @GetMapping("/get-total-biggest-expenses/{email}")
-    public Map.Entry<String, Double> getTotalBiggestExpenses(@PathVariable String email){
-        return expenseService.getBiggestExpense(email);
+    @GetMapping("/get-biggest-expenses/{email}")
+    public BiggestExpenseDTO getBiggestExpense(@PathVariable String email){
+        return expenseService.biggestExpenseDTO(email);
     }
 }

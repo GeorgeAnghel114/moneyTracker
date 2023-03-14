@@ -1,0 +1,13 @@
+package com.example.moneyTracker.DTOs;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+public class BiggestExpenseDTO {
+    private String category;
+    private Double amount;
+}

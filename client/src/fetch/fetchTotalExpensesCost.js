@@ -10,9 +10,8 @@ export default function TotalExpensesCost(URL){
         const response = await request.json();
         setTotalExpenses(response)
       }
-      console.log("total expensesss" +totalExpenses)
       fetchTotalExpenses();
-    },)
+    },[])
 
     return totalExpenses;
   }

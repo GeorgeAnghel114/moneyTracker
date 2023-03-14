@@ -1,5 +1,6 @@
 package com.example.moneyTracker.service;
 
+import com.example.moneyTracker.DTOs.BiggestExpenseDTO;
 import com.example.moneyTracker.DTOs.ExpenseDTO;
 import com.example.moneyTracker.entities.Expense;
 import com.example.moneyTracker.entities.User;
@@ -75,9 +76,17 @@ public class ExpenseService {
                 hashMap.merge(expense.getIncomeCategory(),expense.getAmount(),Double::sum);
             }
         }
-        System.out.println(hashMap);
         return getMaxKeyAndValue(hashMap);
 
+    }
+
+    public BiggestExpenseDTO biggestExpenseDTO(String email){
+        Map.Entry<String,Double> entry = getBiggestExpense(email);
+        BiggestExpenseDTO biggestExpenseDTO1 = new BiggestExpenseDTO();
+        biggestExpenseDTO1.setCategory(entry.getKey());
+        biggestExpenseDTO1.setAmount(entry.getValue());
+
+        return biggestExpenseDTO1;
     }
 
 

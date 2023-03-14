@@ -10,9 +10,8 @@ export default function TotalIncomesCost(URL){
         const response = await request.json();
         setTotalIncomes(response)
       }
-      console.log("total expensesss" +totalIncomes)
       fetchTotalIncomes();
-    },)
+    },[])
 
     return totalIncomes;
   }

@@ -8,7 +8,6 @@ export default function AllExpenses(URL){
         const fetchExpenses = async () =>{
             const request = await fetch(URL)
             const response = await request.json();
-            console.log("intra feci")
           setExpenses(response)
         }
         fetchExpenses();
