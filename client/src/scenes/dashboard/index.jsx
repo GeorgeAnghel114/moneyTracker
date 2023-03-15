@@ -28,6 +28,8 @@ const Dashboard = () => {
   const totalCostIncomes = TotalIncomesCost(`http://localhost:8080/api/income/get-total-incomes/${email}`)
   const biggestIncomeThisMonth = BiggestIncomeThisMonth(`http://localhost:8080/api/income/get-biggest-income/${email}`)
   const biggestExpenseThisMonth = BiggestExpenseThisMonth(`http://localhost:8080/api/expense/get-biggest-expenses/${email}`)
+  
+  const test = Number(biggestIncomeThisMonth.amount).toLocaleString("ro-RO");
   console.log(biggestExpenseThisMonth);
   
   return (
@@ -66,7 +68,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={"$"+totalCostIncomes.toLocaleString()}
+            title={"$"+Number(totalCostIncomes).toLocaleString("ro-RO")}
             subtitle="Total Incomes"
             progress="0.75"
             increase="+14%"
@@ -85,7 +87,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={"$"+totalCostExpenses.toLocaleString()}
+            title={"$"+Number(totalCostExpenses).toLocaleString("ro-RO")}
             subtitle="Total Expenses"
             progress="0.50"
             increase="+21%"
@@ -104,10 +106,10 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={"$"+biggestIncomeThisMonth.toLocaleString()}
+            title={"$"+Number(biggestIncomeThisMonth.amount).toLocaleString("ro-RO")}
             subtitle="Biggest Income This Month"
             progress="0.30"
-            increase="+5%"
+            increase={biggestIncomeThisMonth.category}
             icon={
               <PersonAddIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
@@ -123,7 +125,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={biggestExpenseThisMonth.amount}
+            title={Number(biggestExpenseThisMonth.amount).toLocaleString("ro-RO")}
             subtitle="Biggest Expense This Month"
             progress="0.80"
             increase={biggestExpenseThisMonth.category}
