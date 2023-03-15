@@ -38,7 +38,7 @@ public class ExpenseService {
         User user = userRepository.findUserByEmail(email);
         expense.setAmount(expenseDTO.getAmount());
         expense.setCurrency(expenseDTO.getCurrency());
-        expense.setIncomeCategory(expenseDTO.getExpenseCategory());
+        expense.setExpenseCategory(expenseDTO.getExpenseCategory());
         expense.setUser(user);
         expense.setDate(new Date());
         List<Expense> expenseList = user.getExpenses();
@@ -73,7 +73,7 @@ public class ExpenseService {
         for (Expense expense : expenseList) {
             int monthAsInt = dateService.getMonthAsInt(expense.getDate());
             if(currentMonthAsInt == monthAsInt){
-                hashMap.merge(expense.getIncomeCategory(),expense.getAmount(),Double::sum);
+                hashMap.merge(expense.getExpenseCategory(),expense.getAmount(),Double::sum);
             }
         }
         return getMaxKeyAndValue(hashMap);

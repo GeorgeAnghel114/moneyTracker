@@ -71,7 +71,7 @@ const Dashboard = () => {
             title={"$"+Number(totalCostIncomes).toLocaleString("ro-RO")}
             subtitle="Total Incomes"
             progress="0.75"
-            increase="+14%"
+            increase=""
             icon={
               <EmailIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
@@ -90,7 +90,7 @@ const Dashboard = () => {
             title={"$"+Number(totalCostExpenses).toLocaleString("ro-RO")}
             subtitle="Total Expenses"
             progress="0.50"
-            increase="+21%"
+            increase=""
             icon={
               <PointOfSaleIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}

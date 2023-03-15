@@ -22,7 +22,7 @@ public class Expense {
     private Double amount;
     private String currency;
 
-    private String incomeCategory;
+    private String expenseCategory;
     @ManyToOne
     @JsonBackReference
     private User user;
