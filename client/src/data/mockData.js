@@ -7,7 +7,7 @@ export const mockDataTeam = [
     email: "jonsnow@gmail.com",
     age: 35,
     phone: "(665)121-5454",
-    access: "admin",
+    access: "delete",
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const mockDataTeam = [
     email: "cerseilannister@gmail.com",
     age: 42,
     phone: "(421)314-2288",
-    access: "manager",
+    access: "delete",
   },
   {
     id: 3,
@@ -23,7 +23,7 @@ export const mockDataTeam = [
     email: "jaimelannister@gmail.com",
     age: 45,
     phone: "(422)982-6739",
-    access: "user",
+    access: "delete",
   },
   {
     id: 4,
@@ -31,7 +31,7 @@ export const mockDataTeam = [
     email: "anyastark@gmail.com",
     age: 16,
     phone: "(921)425-6742",
-    access: "admin",
+    access: "delete",
   },
   {
     id: 5,
