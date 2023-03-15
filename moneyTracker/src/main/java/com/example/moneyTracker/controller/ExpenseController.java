@@ -7,7 +7,6 @@ import com.example.moneyTracker.service.ExpenseService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000/", methods = {RequestMethod.PUT, RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST})
 @RequestMapping("/api/expense")
@@ -37,6 +36,6 @@ public class ExpenseController {
 
     @GetMapping("/get-biggest-expenses/{email}")
     public BiggestExpenseDTO getBiggestExpense(@PathVariable String email){
-        return expenseService.biggestExpenseDTO(email);
+        return expenseService.getBiggestExpenseDTO(email);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.moneyTracker.controller;
 
+import com.example.moneyTracker.DTOs.BiggestIncomeDTO;
 import com.example.moneyTracker.DTOs.IncomeDTO;
 import com.example.moneyTracker.entities.Income;
 import com.example.moneyTracker.service.IncomeService;
@@ -32,8 +33,8 @@ public class IncomeController {
     }
 
     @GetMapping("/get-biggest-income/{email}")
-    public Double getBiggestIncomeThisMonth(@PathVariable String email){
-        return incomeService.getBiggestIncomeThisMonth(email);
+    public BiggestIncomeDTO getBiggestIncomeThisMonth(@PathVariable String email){
+        return incomeService.getBiggestIncomeDTO(email);
     }
 
 }

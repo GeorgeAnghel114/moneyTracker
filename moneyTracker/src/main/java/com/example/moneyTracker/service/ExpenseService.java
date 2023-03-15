@@ -80,7 +80,7 @@ public class ExpenseService {
 
     }
 
-    public BiggestExpenseDTO biggestExpenseDTO(String email){
+    public BiggestExpenseDTO getBiggestExpenseDTO(String email){
         Map.Entry<String,Double> entry = getBiggestExpense(email);
         BiggestExpenseDTO biggestExpenseDTO1 = new BiggestExpenseDTO();
         biggestExpenseDTO1.setCategory(entry.getKey());

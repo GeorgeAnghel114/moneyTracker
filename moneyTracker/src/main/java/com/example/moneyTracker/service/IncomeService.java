@@ -1,5 +1,6 @@
 package com.example.moneyTracker.service;
 
+import com.example.moneyTracker.DTOs.BiggestIncomeDTO;
 import com.example.moneyTracker.DTOs.IncomeDTO;
 import com.example.moneyTracker.entities.Income;
 import com.example.moneyTracker.entities.User;
@@ -7,7 +8,10 @@ import com.example.moneyTracker.repositories.IncomeRepository;
 import com.example.moneyTracker.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class IncomeService {
@@ -68,6 +72,38 @@ public class IncomeService {
         return maxIncome;
     }
 
+    public Map.Entry<String,Double> getMaxKeyAndValue(HashMap<String,Double> hashMap){
+        Map.Entry<String, Double> maxEntry = null;
+        for (Map.Entry<String, Double> stringDoubleEntry : hashMap.entrySet()) {
+            if (maxEntry == null || stringDoubleEntry.getValue().compareTo(maxEntry.getValue()) > 0)
+            {
+                maxEntry = stringDoubleEntry;
+            }
+        }
+        return maxEntry;
+    }
+
+    public Map.Entry<String,Double> getBiggestIncome(String email){
+        User user = userRepository.findUserByEmail(email);
+        List<Income> incomeList = user.getIncomes();
+        int currentMonthAsInt = dateService.getCurrentMonthAsInt();
+        HashMap<String, Double> hashMap = new HashMap<>();
+        for (Income income : incomeList) {
+            int monthAsInt = dateService.getMonthAsInt(income.getDate());
+            if(currentMonthAsInt == monthAsInt){
+                hashMap.merge(income.getIncomeCategory(),income.getAmount(),Double::sum);
+            }
+        }
+        return getMaxKeyAndValue(hashMap);
+    }
+
+    public BiggestIncomeDTO getBiggestIncomeDTO(String email){
+        Map.Entry<String,Double> entry = getBiggestIncome(email);
+        BiggestIncomeDTO biggestIncomeDTO = new BiggestIncomeDTO();
+        biggestIncomeDTO.setCategory(entry.getKey());
+        biggestIncomeDTO.setAmount(entry.getValue());
+        return biggestIncomeDTO;
+    }
 
 
 
