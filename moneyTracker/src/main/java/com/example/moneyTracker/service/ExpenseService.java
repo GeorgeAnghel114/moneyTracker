@@ -50,8 +50,12 @@ public class ExpenseService {
         User user = userRepository.findUserByEmail(email);
         List<Expense> expenses =  user.getExpenses();
         Double sum = (double) 0;
+        int currentMontAsInt = dateService.getCurrentMonthAsInt();
         for (Expense expens : expenses) {
-            sum += expens.getAmount();
+            int monthAsInt = dateService.getMonthAsInt(expens.getDate());
+            if(currentMontAsInt == monthAsInt){
+                sum += expens.getAmount();
+            }
         }
         return sum;
     }

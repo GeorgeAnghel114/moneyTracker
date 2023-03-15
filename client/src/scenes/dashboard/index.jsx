@@ -18,6 +18,7 @@ import TotalExpensesCost from "../../fetch/fetchTotalExpensesCost";
 import TotalIncomesCost from "../../fetch/fetchTotalIncomesCost";
 import BiggestIncomeThisMonth from "../../fetch/fetchBiggestIncomeThisMonth";
 import BiggestExpenseThisMonth from "../../fetch/fetchBiggestExpenseThisMonth";
+import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -73,7 +74,7 @@ const Dashboard = () => {
             progress="0.75"
             increase=""
             icon={
-              <EmailIcon
+              <PersonAddIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -92,7 +93,7 @@ const Dashboard = () => {
             progress="0.50"
             increase=""
             icon={
-              <PointOfSaleIcon
+              <PaidOutlinedIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -125,12 +126,12 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={Number(biggestExpenseThisMonth.amount).toLocaleString("ro-RO")}
+            title={"$"+Number(biggestExpenseThisMonth.amount).toLocaleString("ro-RO")}
             subtitle="Biggest Expense This Month"
             progress="0.80"
             increase={biggestExpenseThisMonth.category}
             icon={
-              <TrafficIcon
+              <PaidOutlinedIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -156,7 +157,7 @@ const Dashboard = () => {
                 fontWeight="600"
                 color={colors.grey[100]}
               >
-                Revenue Generated
+                Work in progress
               </Typography>
               <Typography
                 variant="h3"
@@ -239,7 +240,7 @@ const Dashboard = () => {
           p="30px"
         >
           <Typography variant="h5" fontWeight="600">
-            Campaign
+          Work in progress
           </Typography>
           <Box
             display="flex"
@@ -268,7 +269,7 @@ const Dashboard = () => {
             fontWeight="600"
             sx={{ padding: "30px 30px 0 30px" }}
           >
-            Sales Quantity
+            Work in progress
           </Typography>
           <Box height="250px" mt="-20px">
             <BarChart isDashboard={true} />
