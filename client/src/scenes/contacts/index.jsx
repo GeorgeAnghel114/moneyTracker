@@ -1,63 +1,103 @@
-import { Box } from "@mui/material";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { Box, Typography, useTheme } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { mockDataContacts } from "../../data/mockData";
+import { mockDataTeam } from "../../data/mockData";
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
+import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import Header from "../../components/Header";
-import { useTheme } from "@mui/material";
+import AllExpenses from "../../fetch/fetchAllExpenses";
+import AllIncomes from "../../fetch/fetchAllIncomes";
 
-const Contacts = () => {
+const Team = () => {
+  const email = "messi";
+  const allUserIncomes = AllIncomes(`http://localhost:8080/api/income/get-incomes/${email}`)
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
   const columns = [
-    { field: "id", headerName: "ID", flex: 0.5 },
-    { field: "registrarId", headerName: "Registrar ID" },
+    { field: "id", headerName: "ID" },
     {
-      field: "name",
-      headerName: "Name",
+      field: "incomeCategory",
+      headerName: "Category",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "age",
-      headerName: "Age",
+      field: "amount",
+      headerName: "Amount",
+      flex: 1,
+    },
+    {
+      field: "currency",
+      headerName: "Currency",
       type: "number",
       headerAlign: "left",
       align: "left",
     },
+
     {
-      field: "phone",
-      headerName: "Phone Number",
+      field: "date",
+      headerName: "Date",
       flex: 1,
     },
     {
-      field: "email",
-      headerName: "Email",
+      field: "delete",
+      headerName: "Delete Expense",
       flex: 1,
+      renderCell: ({ row: { access } }) => {
+        return (
+          <Box
+            width="60%"
+            m="0 auto"
+            p="5px"
+            display="flex"
+            overflow="hidden"
+            margin="0 0 0 -7px"
+            justifyContent="center"
+            backgroundColor={
+              access === "delete"
+                ? colors.greenAccent[600]
+                : access === "delete"
+                ? colors.greenAccent[700]
+                : colors.greenAccent[700]
+            }
+            borderRadius="4px"
+          > <DeleteForeverOutlinedIcon />
+          </Box>
+        );
+      },
     },
     {
-      field: "address",
-      headerName: "Address",
+      field: "edit",
+      headerName: "Edit Incomes",
       flex: 1,
-    },
-    {
-      field: "city",
-      headerName: "City",
-      flex: 1,
-    },
-    {
-      field: "zipCode",
-      headerName: "Zip Code",
-      flex: 1,
+      renderCell: ({ row: { access } }) => {
+        return (
+          <Box
+            width="60%"
+            m="0 auto"
+            p="5px"
+            display="flex"
+            overflow="hidden"
+            margin="0 0 0 -7px"
+            justifyContent="center"
+            backgroundColor={
+              access === "delete"
+                ? colors.greenAccent[600]
+                : access === "delete"
+                ? colors.greenAccent[700]
+                : colors.greenAccent[700]
+            }
+            borderRadius="4px"
+          > <CreateOutlinedIcon />
+          </Box>
+        );
+      },
     },
   ];
 
   return (
     <Box m="20px">
-      <Header
-        title="CONTACTS"
-        subtitle="List of Contacts for Future Reference"
-      />
+      <Header title="EXPENSES" subtitle="Managing Expenses" />
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -85,19 +125,12 @@ const Contacts = () => {
           "& .MuiCheckbox-root": {
             color: `${colors.greenAccent[200]} !important`,
           },
-          "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-            color: `${colors.grey[100]} !important`,
-          },
         }}
       >
-        <DataGrid
-          rows={mockDataContacts}
-          columns={columns}
-          components={{ Toolbar: GridToolbar }}
-        />
+        <DataGrid checkboxSelection rows={allUserIncomes} columns={columns} />
       </Box>
     </Box>
   );
 };
 
-export default Contacts;
+export default Team;
