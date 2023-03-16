@@ -88,12 +88,14 @@ public class ExpenseService {
 
     public List<Expense> getExpensesPerMonth(String email){
         User user = userRepository.findUserByEmail(email);
+        ExpenseDTO expenseDTO = new ExpenseDTO();
         List<Expense> expenseList = user.getExpenses();
         int currentMonthAsInt = dateService.getCurrentMonthAsInt();
         List<Expense> expensesOfTheCurrentMonth =  new ArrayList<>();
         for (Expense expense : expenseList) {
             int monthAsInt = dateService.getMonthAsInt(expense.getDate());
             if(currentMonthAsInt == monthAsInt){
+
                 expensesOfTheCurrentMonth.add(expense);
             }
         }

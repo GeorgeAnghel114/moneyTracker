@@ -9,6 +9,7 @@ import com.example.moneyTracker.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +40,7 @@ public class IncomeService {
         income.setAmount(incomeDto.getAmount());
         income.setCurrency(incomeDto.getCurrency());
         income.setIncomeCategory(incomeDto.getIncomeCategory());
+        income.setDate(new Date());
         income.setUser(user);
         List<Income> incomeList = user.getIncomes();
         incomeList.add(income);

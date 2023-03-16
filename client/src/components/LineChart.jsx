@@ -115,8 +115,8 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
           ],
         },
       ]}
-      width={750}
-      height={270}
+      // width={750}
+      // height={270}
     />
   );
 };
