@@ -2,14 +2,18 @@ import { ResponsiveLine } from "@nivo/line";
 import { useTheme } from "@mui/material";
 import { tokens } from "../theme";
 import { mockLineData as data } from "../data/mockData";
+import ExpensesCurrentMonth from "../fetch/fetchAllExpensesInTheCurrentMonth";
 
 const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
+  const email = "messi";
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const allExpensesInTheCurrentMonth = ExpensesCurrentMonth(`http://localhost:8080/api/expense/get-expenses-current-month/${email}`)
 
   return (
+    allExpensesInTheCurrentMonth?.length === 0 ? null :
     <ResponsiveLine
-      data={data}
+      data={allExpensesInTheCurrentMonth}
       theme={{
         axis: {
           domain: {
@@ -43,6 +47,7 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
           },
         },
       }}
+      
       colors={isDashboard ? { datum: "color" } : { scheme: "nivo" }} // added
       margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
       xScale={{ type: "point" }}
@@ -54,7 +59,7 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
         reverse: false,
       }}
       yFormat=" >-.2f"
-      curve="catmullRom"
+      curve="monotoneX"
       axisTop={null}
       axisRight={null}
       axisBottom={{
@@ -110,6 +115,8 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
           ],
         },
       ]}
+      width={750}
+      height={270}
     />
   );
 };
