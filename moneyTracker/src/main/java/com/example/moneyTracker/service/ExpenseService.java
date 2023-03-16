@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.example.moneyTracker.service.IncomeService.getStringDoubleEntry;
 
@@ -88,14 +89,12 @@ public class ExpenseService {
 
     public List<Expense> getExpensesPerMonth(String email){
         User user = userRepository.findUserByEmail(email);
-        ExpenseDTO expenseDTO = new ExpenseDTO();
         List<Expense> expenseList = user.getExpenses();
         int currentMonthAsInt = dateService.getCurrentMonthAsInt();
         List<Expense> expensesOfTheCurrentMonth =  new ArrayList<>();
         for (Expense expense : expenseList) {
             int monthAsInt = dateService.getMonthAsInt(expense.getDate());
             if(currentMonthAsInt == monthAsInt){
-
                 expensesOfTheCurrentMonth.add(expense);
             }
         }
@@ -104,5 +103,23 @@ public class ExpenseService {
 
     }
 
+
+    public List<ExpenseDTO> mapToList(String email){
+        List<ExpenseDTO> expenseDTOList = new ArrayList<>();
+        List<Expense> expenseList = getExpensesPerMonth(email);
+        HashMap<String,Double> hashMap = new HashMap<>();
+        Map<String, Double> result = expenseList.stream()
+                .collect(Collectors.groupingBy(Expense::getExpenseCategory,
+                        Collectors.summingDouble(Expense::getAmount)));
+        for (Map.Entry<String, Double> stringDoubleEntry : result.entrySet()) {
+            ExpenseDTO expenseDTO = new ExpenseDTO();
+            expenseDTO.setExpenseCategory(stringDoubleEntry.getKey());
+            expenseDTO.setAmount(stringDoubleEntry.getValue());
+            expenseDTOList.add(expenseDTO);
+        }
+
+        return expenseDTOList;
+
+    }
 
 }
