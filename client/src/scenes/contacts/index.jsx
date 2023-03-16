@@ -33,38 +33,10 @@ const Team = () => {
       headerAlign: "left",
       align: "left",
     },
-
     {
       field: "date",
       headerName: "Date",
       flex: 1,
-    },
-    {
-      field: "delete",
-      headerName: "Delete Expense",
-      flex: 1,
-      renderCell: ({ row: { access } }) => {
-        return (
-          <Box
-            width="60%"
-            m="0 auto"
-            p="5px"
-            display="flex"
-            overflow="hidden"
-            margin="0 0 0 -7px"
-            justifyContent="center"
-            backgroundColor={
-              access === "delete"
-                ? colors.greenAccent[600]
-                : access === "delete"
-                ? colors.greenAccent[700]
-                : colors.greenAccent[700]
-            }
-            borderRadius="4px"
-          > <DeleteForeverOutlinedIcon />
-          </Box>
-        );
-      },
     },
     {
       field: "edit",
@@ -89,6 +61,33 @@ const Team = () => {
             }
             borderRadius="4px"
           > <CreateOutlinedIcon />
+          </Box>
+        );
+      },
+    },
+    {
+      field: "delete",
+      headerName: "Delete Expense",
+      flex: 1,
+      renderCell: ({ row: { access } }) => {
+        return (
+          <Box
+            width="60%"
+            m="0 auto"
+            p="5px"
+            display="flex"
+            overflow="hidden"
+            margin="0 0 0 -7px"
+            justifyContent="center"
+            backgroundColor={
+              access === "delete"
+                ? colors.greenAccent[600]
+                : access === "delete"
+                ? colors.greenAccent[700]
+                : colors.greenAccent[700]
+            }
+            borderRadius="4px"
+          > <DeleteForeverOutlinedIcon />
           </Box>
         );
       },

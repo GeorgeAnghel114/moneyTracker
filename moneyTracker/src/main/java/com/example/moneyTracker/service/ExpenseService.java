@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.example.moneyTracker.service.IncomeService.getStringDoubleEntry;
+
 @Service
 public class ExpenseService {
     private final ExpenseRepository expenseRepository;
@@ -60,14 +62,7 @@ public class ExpenseService {
         return sum;
     }
     public Map.Entry<String,Double> getMaxKeyAndValue(HashMap<String,Double> hashMap){
-        Map.Entry<String, Double> maxEntry = null;
-        for (Map.Entry<String, Double> stringDoubleEntry : hashMap.entrySet()) {
-            if (maxEntry == null || stringDoubleEntry.getValue().compareTo(maxEntry.getValue()) > 0)
-            {
-                maxEntry = stringDoubleEntry;
-            }
-        }
-        return maxEntry;
+        return getStringDoubleEntry(hashMap);
     }
     public Map.Entry<String,Double> getBiggestExpense(String email){
         User user = userRepository.findUserByEmail(email);

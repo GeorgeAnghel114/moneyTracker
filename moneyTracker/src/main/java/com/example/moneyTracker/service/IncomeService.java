@@ -73,6 +73,10 @@ public class IncomeService {
     }
 
     public Map.Entry<String,Double> getMaxKeyAndValue(HashMap<String,Double> hashMap){
+        return getStringDoubleEntry(hashMap);
+    }
+
+    public static Map.Entry<String, Double> getStringDoubleEntry(HashMap<String, Double> hashMap) {
         Map.Entry<String, Double> maxEntry = null;
         for (Map.Entry<String, Double> stringDoubleEntry : hashMap.entrySet()) {
             if (maxEntry == null || stringDoubleEntry.getValue().compareTo(maxEntry.getValue()) > 0)
