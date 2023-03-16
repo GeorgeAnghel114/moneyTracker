@@ -1,7 +1,9 @@
 package com.example.moneyTracker.service;
 
 import com.example.moneyTracker.DTOs.BiggestIncomeDTO;
+import com.example.moneyTracker.DTOs.ExpenseDTO;
 import com.example.moneyTracker.DTOs.IncomeDTO;
+import com.example.moneyTracker.entities.Expense;
 import com.example.moneyTracker.entities.Income;
 import com.example.moneyTracker.entities.User;
 import com.example.moneyTracker.repositories.IncomeRepository;
@@ -9,10 +11,8 @@ import com.example.moneyTracker.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class IncomeService {
@@ -109,6 +109,34 @@ public class IncomeService {
         biggestIncomeDTO.setCategory(entry.getKey());
         biggestIncomeDTO.setAmount(entry.getValue());
         return biggestIncomeDTO;
+    }
+
+    public List<Income> getIncomesPerMonth(String email){
+        User user = userRepository.findUserByEmail(email);
+        List<Income> incomeList = user.getIncomes();
+        int currentMonthAsInt = dateService.getCurrentMonthAsInt();
+        List<Income> incomesOfTheCurrentMonth =  new ArrayList<>();
+        for (Income income : incomeList) {
+            int monthAsInt = dateService.getMonthAsInt(income.getDate());
+            if(currentMonthAsInt == monthAsInt){
+                incomesOfTheCurrentMonth.add(income);
+            }
+        }
+        return incomesOfTheCurrentMonth;
+    }
+    public List<IncomeDTO> getIncomesDTOPerMonth(String email){
+        List<IncomeDTO> incomeDTOList = new ArrayList<>();
+        List<Income> incomeList = getIncomesPerMonth(email);
+        Map<String, Double> result = incomeList.stream()
+                .collect(Collectors.groupingBy(Income::getIncomeCategory,
+                        Collectors.summingDouble(Income::getAmount)));
+        for (Map.Entry<String, Double> stringDoubleEntry : result.entrySet()) {
+            IncomeDTO incomeDTO = new IncomeDTO();
+            incomeDTO.setIncomeCategory(stringDoubleEntry.getKey());
+            incomeDTO.setAmount(stringDoubleEntry.getValue());
+            incomeDTOList.add(incomeDTO);
+        }
+        return incomeDTOList;
     }
 
 

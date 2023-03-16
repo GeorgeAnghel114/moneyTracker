@@ -8,10 +8,8 @@ import com.example.moneyTracker.repositories.ExpenseRepository;
 import com.example.moneyTracker.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
 import java.util.stream.Collectors;
-
 import static com.example.moneyTracker.service.IncomeService.getStringDoubleEntry;
 
 @Service
@@ -25,15 +23,12 @@ public class ExpenseService {
         this.userRepository = userRepository;
         this.dateService = dateService;
     }
-
     public void addExpense(Expense expense) {
         expenseRepository.save(expense);
     }
-
     public List<Expense> getExpensesOfUser(String email){
         return expenseRepository.findExpenseByUserEmail(email);
     }
-
     public void addExpenseOfUser(ExpenseDTO expenseDTO, String email)  {
         Expense expense = new Expense();
         User user = userRepository.findUserByEmail(email);
@@ -46,7 +41,6 @@ public class ExpenseService {
         expenseList.add(expense);
         addExpense(expense);
     }
-
     public Double getTotalCostExpenses(String email){
         User user = userRepository.findUserByEmail(email);
         List<Expense> expenses =  user.getExpenses();
@@ -75,18 +69,14 @@ public class ExpenseService {
             }
         }
         return getMaxKeyAndValue(hashMap);
-
     }
-
     public BiggestExpenseDTO getBiggestExpenseDTO(String email){
         Map.Entry<String,Double> entry = getBiggestExpense(email);
         BiggestExpenseDTO biggestExpenseDTO1 = new BiggestExpenseDTO();
         biggestExpenseDTO1.setCategory(entry.getKey());
         biggestExpenseDTO1.setAmount(entry.getValue());
-
         return biggestExpenseDTO1;
     }
-
     public List<Expense> getExpensesPerMonth(String email){
         User user = userRepository.findUserByEmail(email);
         List<Expense> expenseList = user.getExpenses();
@@ -98,16 +88,11 @@ public class ExpenseService {
                 expensesOfTheCurrentMonth.add(expense);
             }
         }
-
         return expensesOfTheCurrentMonth;
-
     }
-
-
-    public List<ExpenseDTO> mapToList(String email){
+    public List<ExpenseDTO> getExpensesDTOPerMonth(String email){
         List<ExpenseDTO> expenseDTOList = new ArrayList<>();
         List<Expense> expenseList = getExpensesPerMonth(email);
-        HashMap<String,Double> hashMap = new HashMap<>();
         Map<String, Double> result = expenseList.stream()
                 .collect(Collectors.groupingBy(Expense::getExpenseCategory,
                         Collectors.summingDouble(Expense::getAmount)));
@@ -117,9 +102,6 @@ public class ExpenseService {
             expenseDTO.setAmount(stringDoubleEntry.getValue());
             expenseDTOList.add(expenseDTO);
         }
-
         return expenseDTOList;
-
     }
-
 }

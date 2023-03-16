@@ -41,7 +41,6 @@ public class ExpenseController {
 
     @GetMapping("/get-expenses-current-month/{email}")
     public List<ExpenseDTO> getExpensesOfTheCurrentMonth(@PathVariable String email){
-        System.out.println(expenseService.mapToList(email));
-        return expenseService.mapToList(email);
+        return expenseService.getExpensesDTOPerMonth(email);
     }
 }

@@ -211,7 +211,7 @@ const Dashboard = () => {
               </Box>
               <Box
               p-left="0px"
-              color={colors.grey[100]}>{expense.incomeCategory}</Box>
+              color={colors.grey[100]}>{expense.expenseCategory}</Box>
               <Box
                 backgroundColor={colors.greenAccent[500]}
                 p="5px 10px"

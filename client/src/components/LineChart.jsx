@@ -8,7 +8,8 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
   const email = "messi";
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const allExpensesInTheCurrentMonth = ExpensesCurrentMonth(`http://localhost:8080/api/expense/get-expenses-current-month/${email}`)
+  const allExpensesInTheCurrentMonth = 
+  ExpensesCurrentMonth(`http://localhost:8080/api/expense/get-expenses-current-month/${email}`);
 
   return (
     allExpensesInTheCurrentMonth?.length === 0 ? null :
@@ -47,7 +48,6 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
           },
         },
       }}
-      
       colors={isDashboard ? { datum: "color" } : { scheme: "nivo" }} // added
       margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
       xScale={{ type: "point" }}
