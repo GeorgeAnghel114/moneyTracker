@@ -8,10 +8,8 @@ import com.example.moneyTracker.repositories.ExpenseRepository;
 import com.example.moneyTracker.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 
 import static com.example.moneyTracker.service.IncomeService.getStringDoubleEntry;
 
@@ -86,6 +84,22 @@ public class ExpenseService {
         biggestExpenseDTO1.setAmount(entry.getValue());
 
         return biggestExpenseDTO1;
+    }
+
+    public List<Expense> getExpensesPerMonth(String email){
+        User user = userRepository.findUserByEmail(email);
+        List<Expense> expenseList = user.getExpenses();
+        int currentMonthAsInt = dateService.getCurrentMonthAsInt();
+        List<Expense> expensesOfTheCurrentMonth =  new ArrayList<>();
+        for (Expense expense : expenseList) {
+            int monthAsInt = dateService.getMonthAsInt(expense.getDate());
+            if(currentMonthAsInt == monthAsInt){
+                expensesOfTheCurrentMonth.add(expense);
+            }
+        }
+
+        return expensesOfTheCurrentMonth;
+
     }
 
 

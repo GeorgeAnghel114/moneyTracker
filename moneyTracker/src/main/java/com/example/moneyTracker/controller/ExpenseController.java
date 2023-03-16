@@ -38,4 +38,9 @@ public class ExpenseController {
     public BiggestExpenseDTO getBiggestExpense(@PathVariable String email){
         return expenseService.getBiggestExpenseDTO(email);
     }
+
+    @GetMapping("/get-expenses-current-month/{email}")
+    public List<Expense> getExpensesOfTheCurrentMonth(@PathVariable String email){
+        return expenseService.getExpensesPerMonth(email);
+    }
 }

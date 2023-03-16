@@ -1,4 +1,5 @@
 import { tokens } from "../theme";
+import ExpensesCurrentMonth from "../fetch/fetchAllExpensesInTheCurrentMonth";
 
 export const mockDataTeam = [
   {
@@ -429,11 +430,12 @@ export const mockPieData = [
     color: "hsl(344, 70%, 50%)",
   },
 ];
-
+const email = "messi";
+// export const allExpensesInTheCurrentMonth = ExpensesCurrentMonth(`http://localhost:8080/api/expense/get-expenses-current-month/${email}`)
+// console.log(allExpensesInTheCurrentMonth)
 export const mockLineData = [
   {
     id: "japan",
-    color: tokens("dark").greenAccent[500],
     data: [
       {
         x: "plane",

@@ -19,6 +19,7 @@ import TotalIncomesCost from "../../fetch/fetchTotalIncomesCost";
 import BiggestIncomeThisMonth from "../../fetch/fetchBiggestIncomeThisMonth";
 import BiggestExpenseThisMonth from "../../fetch/fetchBiggestExpenseThisMonth";
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
+import ExpensesCurrentMonth from "../../fetch/fetchAllExpensesInTheCurrentMonth";
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -29,9 +30,10 @@ const Dashboard = () => {
   const totalCostIncomes = TotalIncomesCost(`http://localhost:8080/api/income/get-total-incomes/${email}`)
   const biggestIncomeThisMonth = BiggestIncomeThisMonth(`http://localhost:8080/api/income/get-biggest-income/${email}`)
   const biggestExpenseThisMonth = BiggestExpenseThisMonth(`http://localhost:8080/api/expense/get-biggest-expenses/${email}`)
-  
+  const allExpensesInTheCurrentMonth = ExpensesCurrentMonth(`http://localhost:8080/api/expense/get-expenses-current-month/${email}`)
+  // console.log(allExpensesInTheCurrentMonth);
   const test = Number(biggestIncomeThisMonth.amount).toLocaleString("ro-RO");
-  console.log(biggestExpenseThisMonth);
+  // console.log(biggestExpenseThisMonth);
   
   return (
     <Box m="20px">
