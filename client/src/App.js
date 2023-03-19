@@ -5,7 +5,6 @@ import { color } from "@mui/system";
 import Topbar from "./scenes/global/Topbar";
 import SideBar from "./scenes/global/Sidebar"
 import DashBoard from "./scenes/dashboard";
-import Team from "./scenes/team";
 // import InvoicesTable from "./scenes/invocies";
 import Contacts from "./scenes/contacts";
 import Bar from "./scenes/bar";
@@ -19,6 +18,8 @@ import Geography from "./scenes/geography";
 import React, { useState, useRef, useEffect } from "react";
 import Login from "./scenes/login";
 import Register from "./scenes/register";
+import ExpensesTable from "./scenes/expensesTable";
+import IncomesTable from "./scenes/incomesTable";
 
 
 
@@ -50,8 +51,8 @@ function App() {
             <Topbar />
             <Routes>
               <Route path="/" element={<DashBoard/>}/>
-              <Route path="/team" element={<Team/>}/>
-              <Route path="/contacts" element={<Contacts/>}/>
+              <Route path="/expenses-table" element={<ExpensesTable/>}/>
+              <Route path="/incomes-table" element={<IncomesTable/>}/>
               {/* <Route path="/invoices" element={<Invoices/>}/> */}
               <Route path="/form" element={<Form/>}/>
               <Route path="/calendar" element={<Calendar/>}/>  
@@ -67,20 +68,14 @@ function App() {
             <>
           <main className="content">
           <Topbar />
-
             <Routes>
               <Route path="/login" element={<Login/>}/>
               <Route path="/register" element={<Register/>}/>
-
-
             </Routes>
           </main>
                     </>
-
           )
-        
         }
-          
         </div>
       </ThemeProvider>
     </ColorModeContext.Provider>

@@ -135,14 +135,14 @@ const Sidebar = () => {
             </Typography>
             <Item
               title="Manage Expenses"
-              to="/team"
+              to="/expenses-table"
               icon={<CurrencyExchangeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Manage Incomes"
-              to="/contacts"
+              to="/incomes-table"
               icon={<CurrencyExchangeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

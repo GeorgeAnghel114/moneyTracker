@@ -6,16 +6,17 @@ import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import Header from "../../components/Header";
 import AllExpenses from "../../fetch/fetchAllExpenses";
+import AllIncomes from "../../fetch/fetchAllIncomes";
 
-const Team = () => {
+const IncomesTable = () => {
   const email = "messi";
-  const allUserExpenses = AllExpenses(`http://localhost:8080/api/expense/get-expenses/${email}`)
+  const allUserIncomes = AllIncomes(`http://localhost:8080/api/income/get-incomes/${email}`)
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
     { field: "id", headerName: "ID" },
     {
-      field: "expenseCategory",
+      field: "incomeCategory",
       headerName: "Category",
       flex: 1,
       cellClassName: "name-column--cell",
@@ -32,7 +33,6 @@ const Team = () => {
       headerAlign: "left",
       align: "left",
     },
-
     {
       field: "date",
       headerName: "Date",
@@ -40,7 +40,7 @@ const Team = () => {
     },
     {
       field: "edit",
-      headerName: "Edit Expenses",
+      headerName: "Edit Incomes",
       flex: 1,
       renderCell: ({ row: { access } }) => {
         return (
@@ -92,12 +92,11 @@ const Team = () => {
         );
       },
     },
-
   ];
-
+  // INCOMES
   return (
     <Box m="20px">
-      <Header title="EXPENSES" subtitle="Managing Expenses" />
+      <Header title="Incomes" subtitle="Managing Incomes" />
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -127,10 +126,10 @@ const Team = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={allUserExpenses} columns={columns} />
+        <DataGrid checkboxSelection rows={allUserIncomes} columns={columns} />
       </Box>
     </Box>
   );
 };
 
-export default Team;
+export default IncomesTable;

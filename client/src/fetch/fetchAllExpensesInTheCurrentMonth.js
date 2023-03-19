@@ -23,21 +23,20 @@ export default function ExpensesCurrentMonth(URL1) {
       }]);
     });
     // console.log("orice")
-    // const fetchIncomes = async () =>{
-    //   const request2 = await fetch(`http://localhost:8080/api/income/get-incomes-current-month/messi`);
-    //   const respones2 = await request2.json();
-    //   return respones2;
-    // }
-    // fetchIncomes().then((data)=>{
-    //   setIncomes(data);
-    //   setMockData(mockData=>[...mockData,
-    //     {
-    //     id:"incomes",
-    //     color: "hsl(0, 55%, 55%)",
-    //     data: data.sort((a,b) => new Date(a.date) - new Date(b.date)).map((i) => ({ x: i.incomeCategory, y: i.amount })),
-    //   }])
-    // });
-    // console.log("incomessssssss",incomes)
+    const fetchIncomes = async () =>{
+      const request2 = await fetch(`http://localhost:8080/api/income/get-incomes-current-month/messi`);
+      const respones2 = await request2.json();
+      return respones2;
+    }
+    fetchIncomes().then((data)=>{
+      setIncomes(data);
+      setMockData(mockData=>[...mockData,
+        {
+        id:"incomes",
+        color: "hsl(0, 55%, 55%)",
+        data: data.sort((a,b) => new Date(a.date) - new Date(b.date)).map((i) => ({ x: i.incomeCategory, y: i.amount })),
+      }])
+    });
 
   }, []);
 
