@@ -13,4 +13,5 @@ public class ExpenseDTO {
     private String currency;
     private String email;
     private String expenseCategory;
+
 }
