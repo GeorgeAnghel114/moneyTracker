@@ -235,12 +235,12 @@ const Dashboard = () => {
           p="30px"
         >
           <Typography variant="h5" fontWeight="600">
+            
          Incomes
           </Typography>
           <Box height="250px" m="-20px 0 0 0">
             <PieChart isDashboard={true} />
             <Typography>Detailed incomes of the current month</Typography>
-
           </Box>
           {/* <Box
             display="flex"
