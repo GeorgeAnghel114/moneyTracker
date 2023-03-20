@@ -2,13 +2,17 @@ import { ResponsivePie } from "@nivo/pie";
 import { tokens } from "../theme";
 import { useTheme } from "@mui/material";
 import { mockPieData as data } from "../data/mockData";
+import IncomesCurrentMonth from "../fetch/fetchAllIncomesInTheCurrentMonth";
 
 const PieChart = () => {
+  const email = "messi";
+  const allIncomesInTheCurrentMonth = IncomesCurrentMonth(`http://localhost:8080/api/income/get-incomes-current-month/${email}`)
+
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
     <ResponsivePie
-      data={data}
+      data={allIncomesInTheCurrentMonth}
       theme={{
         axis: {
           domain: {
@@ -34,6 +38,11 @@ const PieChart = () => {
         legends: {
           text: {
             fill: colors.grey[100],
+          },
+        },
+        tooltip: {
+          container: {
+            color: colors.primary[500],
           },
         },
       }}

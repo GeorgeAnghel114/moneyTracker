@@ -21,6 +21,7 @@ import BiggestExpenseThisMonth from "../../fetch/fetchBiggestExpenseThisMonth";
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 import ExpensesCurrentMonth from "../../fetch/fetchAllExpensesInTheCurrentMonth";
 import IncomesCurrentMonth from "../../fetch/fetchAllIncomesInTheCurrentMonth";
+import PieChart from "../../components/PieChart";
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -149,7 +150,7 @@ const Dashboard = () => {
                 fontWeight="600"
                 color={colors.grey[100]}
               >
-                Work in progress
+                Expenses
               </Typography>
               <Typography
                 variant="h3"
@@ -170,7 +171,9 @@ const Dashboard = () => {
           <Box height="250px" m="-20px 0 0 0">
             <LineChart isDashboard={true} />
           </Box>
+
         </Box>
+
         <Box
           gridColumn="span 4"
           gridRow="span 2"
@@ -232,9 +235,14 @@ const Dashboard = () => {
           p="30px"
         >
           <Typography variant="h5" fontWeight="600">
-          Work in progress
+         Incomes
           </Typography>
-          <Box
+          <Box height="250px" m="-20px 0 0 0">
+            <PieChart isDashboard={true} />
+            <Typography>Detailed incomes of the current month</Typography>
+
+          </Box>
+          {/* <Box
             display="flex"
             flexDirection="column"
             alignItems="center"
@@ -248,8 +256,7 @@ const Dashboard = () => {
             >
               $48,352 revenue generated
             </Typography>
-            <Typography>Includes extra misc expenditures and costs</Typography>
-          </Box>
+          </Box> */}
         </Box>
         <Box
           gridColumn="span 4"
