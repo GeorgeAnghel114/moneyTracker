@@ -21,6 +21,7 @@ public class ExpenseController {
 
     @PostMapping("/add-expense/{email}")
     public void addUserExpense(@PathVariable String email, @RequestBody ExpenseDTO expenseDTO){
+        System.out.println(expenseDTO);
         expenseService.addExpenseOfUser(expenseDTO,email);
     }
 

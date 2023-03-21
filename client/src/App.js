@@ -8,7 +8,6 @@ import DashBoard from "./scenes/dashboard";
 // import InvoicesTable from "./scenes/invocies";
 import Contacts from "./scenes/contacts";
 import Bar from "./scenes/bar";
-import Form from "./scenes/addExpense";
 import { Theme } from "@fullcalendar/core/internal";
 import Calendar from "./scenes/calendar";
 import Line from "./scenes/line";
@@ -21,6 +20,7 @@ import Register from "./scenes/register";
 import ExpensesTable from "./scenes/expensesTable";
 import IncomesTable from "./scenes/incomesTable";
 import AddExpense from "./scenes/addExpense";
+import AddIncome from "./scenes/addIncome";
 
 
 
@@ -56,6 +56,8 @@ function App() {
               <Route path="/incomes-table" element={<IncomesTable/>}/>
               {/* <Route path="/invoices" element={<Invoices/>}/> */}
               <Route path="/add-expense" element={<AddExpense/>}/>
+              <Route path="/add-income" element={<AddIncome/>}/>
+
               <Route path="/calendar" element={<Calendar/>}/>  
 
               <Route path="/bar" element={<Bar/>}/>
