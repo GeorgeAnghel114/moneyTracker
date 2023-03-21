@@ -4,17 +4,7 @@ export default function ExpensesCurrentMonth(URL1) {
   const [expenses, setExpenses] = useState([]);
   const [incomes,setIncomes] = useState([]);
   const [mockData, setMockData] = useState([]);
-  const email = "messi";
-  const [test,setTest] = useState([{
-    id:"",
-    color:"",
-    data:[]
-  },{
-    id2:"",
-    color2:"",
-    data2:[],
-  }]);
-  const res = [];
+
 
   useEffect(() => {
     const fetchExpenses = async () => {
@@ -22,11 +12,11 @@ export default function ExpensesCurrentMonth(URL1) {
       const response = await request.json();
       return response;
     };
-    const fetchIncomes = async () =>{
-      const request2 = await fetch(`http://localhost:8080/api/income/get-incomes-current-month/messi`);
-      const respones2 = await request2.json();
-      return respones2;
-    }
+    // const fetchIncomes = async () =>{
+    //   const request2 = await fetch(`http://localhost:8080/api/income/get-incomes-current-month/messi`);
+    //   const respones2 = await request2.json();
+    //   return respones2;
+    // }
 
     fetchExpenses().then((data) => {
       setExpenses(data);
@@ -52,7 +42,7 @@ export default function ExpensesCurrentMonth(URL1) {
   }, []);
 
 
-  console.log(mockData)
+  // console.log(mockData)
 
   return mockData;
 }

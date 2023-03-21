@@ -23,6 +23,6 @@ export default function IncomesCurrentMonth(URL){
             })))
         })
     },[])
-    console.log(data);
+    // console.log(data);
     return data;
 }

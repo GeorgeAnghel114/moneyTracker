@@ -13,6 +13,6 @@ export default function BiggestExpenseThisMonth(URL){
       }
       fetchBiggestExpenseThisMonth();
     },[])
-    console.log("biggggesst expenses"+biggestExpense,biggestExpense.category);
+    // console.log("biggggesst expenses"+biggestExpense,biggestExpense.category);
     return biggestExpense;
   }
