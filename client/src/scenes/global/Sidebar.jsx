@@ -17,6 +17,7 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 
 export const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -160,12 +161,19 @@ const Sidebar = () => {
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Pages
+              Add data
             </Typography>
             <Item
-              title="Profile Form"
-              to="/form"
-              icon={<PersonOutlinedIcon />}
+              title="Add Expense"
+              to="/add-expense"
+              icon={<MonetizationOnIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Add income"
+              to="/add-income"
+              icon={<MonetizationOnIcon />}
               selected={selected}
               setSelected={setSelected}
             />

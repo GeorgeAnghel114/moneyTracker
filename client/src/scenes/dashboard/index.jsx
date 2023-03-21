@@ -35,7 +35,7 @@ const Dashboard = () => {
   const allExpensesInTheCurrentMonth = ExpensesCurrentMonth(`http://localhost:8080/api/expense/get-expenses-current-month/${email}`)
   const test = Number(biggestIncomeThisMonth.amount).toLocaleString("ro-RO");
   const allIncomesInTheCurrentMonth = IncomesCurrentMonth(`http://localhost:8080/api/income/get-incomes-current-month/${email}`)
-
+  const expensesReversed = expenses.map(item => item).reverse();
 
   return (
     <Box m="20px">
@@ -192,7 +192,7 @@ const Dashboard = () => {
               Recent Expenses
             </Typography>
           </Box>
-          {expenses.map((expense, i) => (
+          {expensesReversed.map((expense, i) => (
             <Box
               key={`${expense.txId}-${i}`}
               display="flex"

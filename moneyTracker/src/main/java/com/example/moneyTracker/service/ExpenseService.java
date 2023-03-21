@@ -27,7 +27,7 @@ public class ExpenseService {
         expenseRepository.save(expense);
     }
     public List<Expense> getExpensesOfUser(String email){
-        return expenseRepository.findExpenseByUserEmail(email);
+        return  expenseRepository.findExpenseByUserEmail(email);
     }
     public void addExpenseOfUser(ExpenseDTO expenseDTO, String email)  {
         Expense expense = new Expense();

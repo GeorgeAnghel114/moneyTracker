@@ -5,7 +5,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import axios from "axios";
 
-const Form = () => {
+const AddExpense = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
 
@@ -81,7 +81,7 @@ const Form = () => {
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" color="secondary" variant="contained">
-                Create New User
+                Add expense
               </Button>
             </Box>
           </form>
@@ -101,4 +101,4 @@ const expenseDTO = {
   expenseCategory: "",
 };
 
-export default Form;
+export default AddExpense;
