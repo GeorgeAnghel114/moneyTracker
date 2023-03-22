@@ -62,7 +62,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={"$"+Number(totalCostIncomes).toLocaleString("ro-RO")}
+            title={"$"+Number(totalCostIncomes).toLocaleString("ro-RO")?"$"+Number(totalCostIncomes).toLocaleString("ro-RO"):"$0"}
             subtitle="Total Incomes"
             progress="0.75"
             increase=""
@@ -81,7 +81,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={"$"+Number(totalCostExpenses).toLocaleString("ro-RO")}
+            title={"$"+Number(totalCostExpenses).toLocaleString("ro-RO")?"$"+Number(totalCostExpenses).toLocaleString("ro-RO"):"$0"}
             subtitle="Total Expenses"
             progress="0.50"
             increase=""
@@ -100,7 +100,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={"$"+Number(biggestIncomeThisMonth.amount).toLocaleString("ro-RO")}
+            title={"$"+Number(biggestIncomeThisMonth.amount).toLocaleString("ro-RO")==="$NaN" ? "$0": "$"+Number(biggestIncomeThisMonth.amount).toLocaleString("ro-RO") }
             subtitle="Biggest Income This Month"
             progress="0.30"
             increase={biggestIncomeThisMonth.category}
@@ -119,7 +119,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={"$"+Number(biggestExpenseThisMonth.amount).toLocaleString("ro-RO")}
+            title={"$"+Number(biggestExpenseThisMonth.amount).toLocaleString("ro-RO")==="$Nan"?"$0":"$"+Number(biggestExpenseThisMonth.amount).toLocaleString("ro-RO")}
             subtitle="Biggest Expense This Month"
             progress="0.80"
             increase={biggestExpenseThisMonth.category}
@@ -160,13 +160,6 @@ const Dashboard = () => {
                 $59,342.32
               </Typography>
             </Box>
-            {/* <Box> */}
-              {/* <IconButton>
-                <DownloadOutlinedIcon
-                  sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
-                />
-              </IconButton> */}
-            {/* </Box> */}
           </Box>
           <Box height="250px" m="-20px 0 0 0">
             <LineChart isDashboard={true} />
@@ -235,28 +228,19 @@ const Dashboard = () => {
           p="30px"
         >
           <Typography variant="h5" fontWeight="600">
-            
          Incomes
           </Typography>
           <Box height="250px" m="-20px 0 0 0">
-            <PieChart isDashboard={true} />
-            <Typography>Detailed incomes of the current month</Typography>
+            {Number(totalCostIncomes).toLocaleString("ro-RO")===0?
+             <Typography m="30px">Add incomes to see the piechart</Typography>:
+             <>
+             <PieChart isDashboard={true}  />
+             <Typography>Detailed incomes of the current month</Typography>
+             </>
+             
+            
+          }
           </Box>
-          {/* <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            mt="25px"
-          >
-            <ProgressCircle size="125" />
-            <Typography
-              variant="h5"
-              color={colors.greenAccent[500]}
-              sx={{ mt: "15px" }}
-            >
-              $48,352 revenue generated
-            </Typography>
-          </Box> */}
         </Box>
         <Box
           gridColumn="span 4"
