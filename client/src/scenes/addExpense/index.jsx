@@ -4,23 +4,46 @@ import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const AddExpense = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
+  let navigate = useNavigate();
+  const  notify =  () => toast("Wow so easy!",{
+    position:"top-center"
+  });
 
+  function redirect(status) {
+    if (status === 200) {
+        toast('You successfully added an expense', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          style:{"--toastify-color-progress-dark": "#11ed23" }
+      })
+    }
+    navigate("/");
+}
 
   const handleFormSubmit = (values) => {
     addExpenses(values);
-
   };
 
   const addExpenses = async(values)=>{
-  console.log(values)
+  // console.log(values)
   const email = "messi";
-
    axios.post(`http://localhost:8080/api/expense/add-expense/${email}`,values)
    .then(response=>{
-    console.log(response)
+    redirect(response.status);
    })
   }
 
@@ -32,6 +55,7 @@ const AddExpense = () => {
         onSubmit={handleFormSubmit}
         initialValues={expenseDTO}
         validationSchema={checkoutSchema}
+        
       >
         {({
           values,
@@ -80,13 +104,15 @@ const AddExpense = () => {
 
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
-              <Button type="submit" color="secondary" variant="contained">
+              <Button 
+              type="submit" color="secondary" variant="contained">
                 Add expense
               </Button>
             </Box>
           </form>
         )}
       </Formik>
+      <ToastContainer />
     </Box>
   );
 };

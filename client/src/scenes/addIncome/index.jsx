@@ -8,10 +8,8 @@ import axios from "axios";
 const AddIncome = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
-
   const handleFormSubmit = (values) => {
     addIncome(values);
-
   };
 
   const addIncome = async(values)=>{

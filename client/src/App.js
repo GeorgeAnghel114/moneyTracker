@@ -21,6 +21,9 @@ import ExpensesTable from "./scenes/expensesTable";
 import IncomesTable from "./scenes/incomesTable";
 import AddExpense from "./scenes/addExpense";
 import AddIncome from "./scenes/addIncome";
+import { ToastContainer, toast } from 'react-toastify';
+
+
 
 
 
@@ -81,6 +84,7 @@ function App() {
         }
         </div>
       </ThemeProvider>
+      <ToastContainer/>
     </ColorModeContext.Provider>
   );
 }

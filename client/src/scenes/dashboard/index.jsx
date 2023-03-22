@@ -22,6 +22,8 @@ import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 import ExpensesCurrentMonth from "../../fetch/fetchAllExpensesInTheCurrentMonth";
 import IncomesCurrentMonth from "../../fetch/fetchAllIncomesInTheCurrentMonth";
 import PieChart from "../../components/PieChart";
+import { ToastContainer, toast } from 'react-toastify';
+
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -119,7 +121,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={"$"+Number(biggestExpenseThisMonth.amount).toLocaleString("ro-RO")==="$Nan"?"$0":"$"+Number(biggestExpenseThisMonth.amount).toLocaleString("ro-RO")}
+            title={"$"+Number(biggestExpenseThisMonth.amount).toLocaleString("ro-RO")==="$NaN"?"$0":"$"+Number(biggestExpenseThisMonth.amount).toLocaleString("ro-RO")}
             subtitle="Biggest Expense This Month"
             progress="0.80"
             increase={biggestExpenseThisMonth.category}
@@ -157,12 +159,13 @@ const Dashboard = () => {
                 fontWeight="bold"
                 color={colors.greenAccent[500]}
               >
-                $59,342.32
               </Typography>
             </Box>
           </Box>
           <Box height="250px" m="-20px 0 0 0">
-            <LineChart isDashboard={true} />
+          <LineChart isDashboard={true} />
+
+      
           </Box>
 
         </Box>
@@ -276,6 +279,8 @@ const Dashboard = () => {
           </Box>
         </Box>
       </Box>
+      <ToastContainer />
+
     </Box>
   );
 };
