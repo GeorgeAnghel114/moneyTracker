@@ -17,12 +17,12 @@ import java.util.stream.Collectors;
 @Service
 public class IncomeService {
     private final IncomeRepository incomeRepository;
-    private final UserRepository userRepository;
+    private final UserService userService;
     private final DateService dateService;
-    @Autowired
-    public IncomeService(IncomeRepository incomeRepository, UserRepository userRepository, DateService dateService) {
+
+    public IncomeService(IncomeRepository incomeRepository, UserService userService, DateService dateService) {
         this.incomeRepository = incomeRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
         this.dateService = dateService;
     }
 
@@ -36,7 +36,7 @@ public class IncomeService {
 
     public void addIncomeOfUser(IncomeDTO incomeDto, String email)  {
         Income income = new Income();
-        User user = userRepository.findUserByEmail(email);
+        User user = userService.findUserByEmail(email);
         income.setAmount(incomeDto.getAmount());
         income.setCurrency(incomeDto.getCurrency());
         income.setIncomeCategory(incomeDto.getIncomeCategory());
@@ -48,7 +48,7 @@ public class IncomeService {
     }
 
     public Double getTotalIncomes(String email){
-        User user = userRepository.findUserByEmail(email);
+        User user = userService.findUserByEmail(email);
         List<Income> incomeList = user.getIncomes();
         Double sum = (double) 0;
         for (Income income : incomeList) {
@@ -58,7 +58,7 @@ public class IncomeService {
     }
 
     public Double getBiggestIncomeThisMonth(String email){
-        User user = userRepository.findUserByEmail(email);
+        User user = userService.findUserByEmail(email);
         List<Income> incomeList = user.getIncomes();
         Double maxIncome = (double) 0;
         int currentMonthAsInt = dateService.getCurrentMonthAsInt();
@@ -90,7 +90,7 @@ public class IncomeService {
     }
 
     public Map.Entry<String,Double> getBiggestIncome(String email){
-        User user = userRepository.findUserByEmail(email);
+        User user = userService.findUserByEmail(email);
         List<Income> incomeList = user.getIncomes();
         int currentMonthAsInt = dateService.getCurrentMonthAsInt();
         HashMap<String, Double> hashMap = new HashMap<>();
@@ -112,7 +112,7 @@ public class IncomeService {
     }
 
     public List<Income> getIncomesPerMonth(String email){
-        User user = userRepository.findUserByEmail(email);
+        User user = userService.findUserByEmail(email);
         List<Income> incomeList = user.getIncomes();
         int currentMonthAsInt = dateService.getCurrentMonthAsInt();
         List<Income> incomesOfTheCurrentMonth =  new ArrayList<>();

@@ -13,9 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const AddExpense = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   let navigate = useNavigate();
-  const  notify =  () => toast("Wow so easy!",{
-    position:"top-center"
-  });
+
 
   function redirect(status) {
     if (status === 200) {
@@ -112,7 +110,6 @@ const AddExpense = () => {
           </form>
         )}
       </Formik>
-      <ToastContainer />
     </Box>
   );
 };

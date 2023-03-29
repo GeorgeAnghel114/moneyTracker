@@ -4,13 +4,32 @@ import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 const AddIncome = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
+  let navigate = useNavigate();
 
   const handleFormSubmit = (values) => {
     addIncome(values);
   };
+  function redirect(status) {
+    if (status === 200) {
+        toast('You successfully added an income', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          style:{"--toastify-color-progress-dark": "#11ed23" }
+      })
+    }
+    navigate("/");
+}
 
   const addIncome = async(values)=>{
   console.log(values)
@@ -19,6 +38,7 @@ const AddIncome = () => {
    axios.post(`http://localhost:8080/api/income/add-income/${email}`,values)
    .then(response=>{
     console.log(response)
+    redirect(response.status)
    })
   }
 

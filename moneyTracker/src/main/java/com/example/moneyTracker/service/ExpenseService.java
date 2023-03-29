@@ -15,14 +15,15 @@ import static com.example.moneyTracker.service.IncomeService.getStringDoubleEntr
 @Service
 public class ExpenseService {
     private final ExpenseRepository expenseRepository;
-    private final UserRepository userRepository;
+    private final UserService userService;
     private final DateService dateService;
-    @Autowired
-    public ExpenseService(ExpenseRepository expenseRepository, UserRepository userRepository, DateService dateService) {
+
+    public ExpenseService(ExpenseRepository expenseRepository, UserService userService, DateService dateService) {
         this.expenseRepository = expenseRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
         this.dateService = dateService;
     }
+
     public void addExpense(Expense expense) {
         expenseRepository.save(expense);
     }
@@ -31,18 +32,24 @@ public class ExpenseService {
     }
     public void addExpenseOfUser(ExpenseDTO expenseDTO, String email)  {
         Expense expense = new Expense();
-        User user = userRepository.findUserByEmail(email);
+//        User user = userRepository.findUserByEmail(email);
+        User user = userService.findUserByEmail(email);
+//        ExpenseDTO expenseDTO1 = ExpenseDTO.builder().amount(expenseDTO.getAmount()).build();
         expense.setAmount(expenseDTO.getAmount());
         expense.setCurrency(expenseDTO.getCurrency());
         expense.setExpenseCategory(expenseDTO.getExpenseCategory());
         expense.setUser(user);
+        //local date, local date time
+        // Date outdated
         expense.setDate(new Date());
+
         List<Expense> expenseList = user.getExpenses();
         expenseList.add(expense);
         addExpense(expense);
     }
+
     public Double getTotalCostExpenses(String email){
-        User user = userRepository.findUserByEmail(email);
+        User user = userService.findUserByEmail(email);
         List<Expense> expenses =  user.getExpenses();
         Double sum = (double) 0;
         int currentMontAsInt = dateService.getCurrentMonthAsInt();
@@ -58,7 +65,7 @@ public class ExpenseService {
         return getStringDoubleEntry(hashMap);
     }
     public Map.Entry<String,Double> getBiggestExpense(String email){
-        User user = userRepository.findUserByEmail(email);
+        User user = userService.findUserByEmail(email);
         List<Expense> expenseList = user.getExpenses();
         int currentMonthAsInt = dateService.getCurrentMonthAsInt();
         HashMap<String, Double> hashMap = new HashMap<>();
@@ -78,7 +85,7 @@ public class ExpenseService {
         return biggestExpenseDTO1;
     }
     public List<Expense> getExpensesPerMonth(String email){
-        User user = userRepository.findUserByEmail(email);
+        User user = userService.findUserByEmail(email);
         List<Expense> expenseList = user.getExpenses();
         int currentMonthAsInt = dateService.getCurrentMonthAsInt();
         List<Expense> expensesOfTheCurrentMonth =  new ArrayList<>();
@@ -90,6 +97,7 @@ public class ExpenseService {
         }
         return expensesOfTheCurrentMonth;
     }
+
     public List<ExpenseDTO> getExpensesDTOPerMonth(String email){
         List<ExpenseDTO> expenseDTOList = new ArrayList<>();
         List<Expense> expenseList = getExpensesPerMonth(email);

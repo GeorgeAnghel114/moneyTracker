@@ -21,7 +21,6 @@ public class Expense {
     private Long id;
     private Double amount;
     private String currency;
-
     private String expenseCategory;
     @ManyToOne
     @JsonBackReference
