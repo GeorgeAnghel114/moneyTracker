@@ -25,7 +25,7 @@ public class User {
     @OneToMany
     @JsonManagedReference
     private List<Income> incomes;
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Expense> expenses;
 

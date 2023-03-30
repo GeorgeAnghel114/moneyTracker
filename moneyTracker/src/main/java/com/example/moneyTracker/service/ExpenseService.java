@@ -115,15 +115,27 @@ public class ExpenseService {
 
     public List<Expense> deleteExpenseById(String email,Long id){
         User user = userService.findUserByEmail(email);
-        List<Expense> expenses = user.getExpenses();
-        List<Expense> res = new ArrayList<>();
-        for (int i = 0; i < expenses.size(); i++) {
-            Long expenseId = expenses.get(i).getId();
-            if(expenseId!=id){
-                res.add(expenses.get(i));
-            }
-        }
+        List<Expense> expenseList = user.getExpenses();
+        Expense expense = findExpenses(expenseList,id);
 
-        return res;
+        expenseList.remove(expense);
+        expenseRepository.delete(expense);
+        return expenseList;
     }
+
+    public Expense findExpenses(List<Expense> expenseList,Long expenseId){
+        if(expenseList == null){
+            return null;
+        }
+        Expense expense = null;
+        for (Expense expense1 : expenseList) {
+            if(Objects.equals(expense1.getId(),expenseId)){
+                expense = expense1;
+            }
+            
+        }
+        return expense;
+    }
+
+
 }

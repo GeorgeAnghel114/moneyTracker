@@ -17,12 +17,12 @@ import java.util.Date;
 @Table(name="expenses")
 public class Expense {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double amount;
     private String currency;
     private String expenseCategory;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JsonBackReference
     private User user;
     private Date date;
