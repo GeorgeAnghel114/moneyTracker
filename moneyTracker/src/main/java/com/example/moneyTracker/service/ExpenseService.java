@@ -112,4 +112,18 @@ public class ExpenseService {
         }
         return expenseDTOList;
     }
+
+    public List<Expense> deleteExpenseById(String email,Long id){
+        User user = userService.findUserByEmail(email);
+        List<Expense> expenses = user.getExpenses();
+        List<Expense> res = new ArrayList<>();
+        for (int i = 0; i < expenses.size(); i++) {
+            Long expenseId = expenses.get(i).getId();
+            if(expenseId!=id){
+                res.add(expenses.get(i));
+            }
+        }
+
+        return res;
+    }
 }

@@ -45,4 +45,8 @@ public class ExpenseController {
         System.out.println(expenseService.getExpensesDTOPerMonth(email));
         return expenseService.getExpensesDTOPerMonth(email);
     }
+    @DeleteMapping("/delete-expense/{email}/{id}")
+    public List<Expense> deleteExpenseById(@PathVariable String email,@PathVariable Long id){
+        return expenseService.deleteExpenseById(email,id);
+    }
 }
