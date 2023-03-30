@@ -1,17 +1,25 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { mockDataTeam } from "../../data/mockData";
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import Header from "../../components/Header";
 import AllExpenses from "../../fetch/fetchAllExpenses";
+import { useState } from "react";
 
 const ExpensesTable = () => {
   const email = "messi";
   const allUserExpenses = AllExpenses(`http://localhost:8080/api/expense/get-expenses/${email}`)
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [customers, setCustomers] = useState("");
+
+
+const handleDelete = () => {
+  console.log(customers);
+  console.log("merge")
+};
+
   const columns = [
     { field: "id", headerName: "ID" },
     {
@@ -52,6 +60,7 @@ const ExpensesTable = () => {
             overflow="hidden"
             margin="0 0 0 -7px"
             justifyContent="center"
+            variant="contained"
             backgroundColor={
               access === "delete"
                 ? colors.greenAccent[600]
@@ -79,6 +88,7 @@ const ExpensesTable = () => {
             overflow="hidden"
             margin="0 0 0 -7px"
             justifyContent="center"
+
             backgroundColor={
               access === "delete"
                 ? colors.greenAccent[600]
@@ -87,7 +97,9 @@ const ExpensesTable = () => {
                 : colors.greenAccent[700]
             }
             borderRadius="4px"
-          > <DeleteForeverOutlinedIcon />
+          > <DeleteForeverOutlinedIcon  
+          onClick={handleDelete()}
+          />
           </Box>
         );
       },
@@ -127,7 +139,9 @@ const ExpensesTable = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={allUserExpenses} columns={columns} />
+        <DataGrid  rows={allUserExpenses} columns={columns}
+            onRowClick={(rows)=>{setCustomers(rows.id)}}
+            />
       </Box>
     </Box>
   );
